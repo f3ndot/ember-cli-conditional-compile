@@ -12,7 +12,9 @@ var initializer = {
         if (feature_flags[flag]) {
           return options.fn(this);
         } else {
-          return options.inverse(this);
+          if (typeof options.inverse === 'function') {
+            return options.inverse(this);
+          }
         }
       });
     });
